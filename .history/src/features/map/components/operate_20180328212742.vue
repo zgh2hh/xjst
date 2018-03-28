@@ -19,7 +19,7 @@
     </el-row>
     <!-- 列表 -->
     <el-row :gutter="0">
-      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :cellClicked="onCellClicked" :localeText='localeText' :enableSorting='true'>
+      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :rowClicked="onRowClicked" :localeText='localeText' :enableSorting='true'>
       </ag-grid-vue>
     </el-row>
     <!-- 操作按钮 -->
@@ -145,7 +145,7 @@ export default {
       this.selectedRows = this.gridOptions.api.getSelectedRows()
       this.$emit('selectedRowsChanged', this.selectedRows)
     },
-    onCellClicked(event) {
+    onRowClicked(event) {
       console.log(event.node.data)
       debugger
     },

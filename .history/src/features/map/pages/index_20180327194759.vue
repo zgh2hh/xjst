@@ -159,7 +159,7 @@ export default {
       }
     },
     getIcon(isSelected) {
-      let style = isSelected ? 'iconfont icon-position1 active' : 'iconfont icon-position1'
+      let style = isSelected ? 'position active' : 'position'
       return L.divIcon({
         className: style,
         iconSize: [40, 40],
@@ -261,6 +261,18 @@ export default {
 
       .map {
         z-index: 0;
+        /* .position {
+          background-image: url('../../../assets/img/position.png');
+          background-size: 100% 100%;
+          &:hover {
+            background-image: url('../../../assets/img/position-active.png');
+          }
+        }
+
+        .position.active {
+          background-image: url('../../../assets/img/position-active.png');
+          background-size: 100% 100%;
+        } */
       }
     }
 

@@ -162,8 +162,8 @@ export default {
       let style = isSelected ? 'iconfont icon-position1 active' : 'iconfont icon-position1'
       return L.divIcon({
         className: style,
-        iconSize: [40, 40],
-        iconAnchor: [20, 38]
+        iconSize: [40, 40]
+        // iconAnchor: [20, 38]
       })
     },
     selectContainedPoint(latLngBounds) {

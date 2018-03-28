@@ -6,7 +6,6 @@
 
 <script>
 import 'leaflet/dist/leaflet.css'
-import '@/assets/iconfont/iconfont.css'
 import '@/assets/style/common.less'
 import L from 'leaflet'
 import 'leaflet.pm/dist/leaflet.pm.css'

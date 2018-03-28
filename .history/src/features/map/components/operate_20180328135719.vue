@@ -19,7 +19,7 @@
     </el-row>
     <!-- 列表 -->
     <el-row :gutter="0">
-      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :rowClicked="onRowClicked" :localeText='localeText' :enableSorting='true'>
+      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :localeText='localeText' :enableSorting='true'>
       </ag-grid-vue>
     </el-row>
     <!-- 操作按钮 -->
@@ -34,9 +34,9 @@
 
 <script>
 import AgGridVue from '@/components/ag-grid'
-import colorCp from './color.js'
 import readFile from '../mixins/readText'
-import { config } from '@/assets/config'
+import {config} from '@/assets/config'
+import colorPicker from 'vue-color-picker/dist/vueColorPicker.min.js'
 
 export default {
   mixins: [readFile],
@@ -74,25 +74,12 @@ export default {
     }
   },
   data() {
-    let that = this
     return {
       track: [],
       gridOptions: null,
       rowData: [],
       selectedRows: [],
-      display: 1,
-      color: '',
-      picked: {},
-      menus: [
-        {
-          name: '设置颜色',
-          action: () => {
-            that.$refs.colorPicker.openPicker()
-          },
-          icon: 'icon-filter',
-          position: 'left'
-        }
-      ]
+      display: 1
     }
   },
   methods: {
@@ -105,12 +92,6 @@ export default {
           // suppressSorting: true,
           suppressMenu: true,
           pinned: true
-        },
-        {
-          headerName: '*',
-          width: 30,
-          suppressSorting: true,
-          cellRendererFramework: colorCp
         },
         {
           headerName: '描述',
@@ -142,12 +123,9 @@ export default {
       ]
     },
     onRowSelected(event) {
+      // console.log('onRowSelected: ' + event.node.data.time)
       this.selectedRows = this.gridOptions.api.getSelectedRows()
       this.$emit('selectedRowsChanged', this.selectedRows)
-    },
-    onRowClicked(event) {
-      console.log(event.node.data)
-      debugger
     },
     /**
      * 添加点
@@ -190,22 +168,7 @@ export default {
         componentParent: this
       },
       suppressMenuHide: true,
-      enableFilter: true,
-      // popupParent: this.$root.$el,
-      getContextMenuItems: ({ node, api }) => {
-        let customMenus = this.menus.map(menu =>
-          Object.assign({}, menu, {
-            icon: `<i class="iconfont ${menu.icon}" />`,
-            disabled: menu.disabled && menu.disabled()
-          })
-        )
-        return ['copy', 'copyWithHeaders', 'separator', ...customMenus]
-      },
-      getRowStyle: function(params) {
-        if (params) {
-          // return { background: 'red' }
-        }
-      }
+      enableFilter: true
     }
     let that = this
     this.gridOptions.columnDefs = this.createColumnDefs()
@@ -216,7 +179,6 @@ export default {
       // TODO 编辑需要优化
       that.$emit('updated', that.rowData)
     }
-    // 语言设置为中文
     this.localeText = config.localeText
   },
   watch: {
@@ -256,8 +218,5 @@ export default {
   background-color: #ccc;
   border-radius: 4px;
   width: 432px;
-}
-.m-colorPicker .box.open {
-  z-index: 999;
 }
 </style>

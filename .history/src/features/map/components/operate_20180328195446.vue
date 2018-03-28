@@ -110,7 +110,8 @@ export default {
           headerName: '*',
           width: 30,
           suppressSorting: true,
-          cellRendererFramework: colorCp
+          cellRendererFramework: colorCp,
+          editable: true
         },
         {
           headerName: '描述',

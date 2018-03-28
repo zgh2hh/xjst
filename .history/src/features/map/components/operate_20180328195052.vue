@@ -7,6 +7,9 @@
           <input type="file" ref="file" id="file" style="display: none;" @change="selectFile">
         </label>
       </el-col>
+      <!-- <el-col :span="2">
+        <color-picker v-model="color" v-on:change="headleChangeColor" ref="colorPicker"></color-picker>
+      </el-col> -->
       <el-col :span="2">
         <el-checkbox @change='checkToggle'>popup</el-checkbox>
       </el-col>
@@ -35,6 +38,7 @@
 <script>
 import AgGridVue from '@/components/ag-grid'
 import colorCp from './color.js'
+import picker from '@/components/vue-color-picker/picker'
 import readFile from '../mixins/readText'
 import { config } from '@/assets/config'
 
@@ -42,7 +46,8 @@ export default {
   mixins: [readFile],
   name: 'operate',
   components: {
-    'ag-grid-vue': AgGridVue
+    'ag-grid-vue': AgGridVue,
+    'color-picker': picker
   },
   props: {
     inRangePoints: {

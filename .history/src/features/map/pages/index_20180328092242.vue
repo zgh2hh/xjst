@@ -162,8 +162,8 @@ export default {
       let style = isSelected ? 'iconfont icon-position1 active' : 'iconfont icon-position1'
       return L.divIcon({
         className: style,
-        iconSize: [40, 40],
-        iconAnchor: [20, 38]
+        iconSize: [40, 40]
+        // iconAnchor: [20, 38]
       })
     },
     selectContainedPoint(latLngBounds) {
@@ -261,6 +261,18 @@ export default {
 
       .map {
         z-index: 0;
+        /* .position {
+          background-image: url('../../../assets/img/position.png');
+          background-size: 100% 100%;
+          &:hover {
+            background-image: url('../../../assets/img/position-active.png');
+          }
+        }
+
+        .position.active {
+          background-image: url('../../../assets/img/position-active.png');
+          background-size: 100% 100%;
+        } */
       }
     }
 

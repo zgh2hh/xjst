@@ -159,11 +159,11 @@ export default {
       }
     },
     getIcon(isSelected) {
-      let style = isSelected ? 'iconfont icon-position1 active' : 'iconfont icon-position1'
+      let style = isSelected ? 'iconfont icon-position active' : 'iconfont icon-position'
       return L.divIcon({
         className: style,
-        iconSize: [40, 40],
-        iconAnchor: [20, 38]
+        iconSize: [40, 40]
+        // iconAnchor: [20, 38]
       })
     },
     selectContainedPoint(latLngBounds) {

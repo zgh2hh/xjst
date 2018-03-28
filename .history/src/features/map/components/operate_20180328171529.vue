@@ -19,11 +19,12 @@
     </el-row>
     <!-- 列表 -->
     <el-row :gutter="0">
-      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :rowClicked="onRowClicked" :localeText='localeText' :enableSorting='true'>
+      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :localeText='localeText' :enableSorting='true'>
       </ag-grid-vue>
     </el-row>
     <!-- 操作按钮 -->
     <el-row>
+      <color-picker v-model="color" ref="colorPicker"></color-picker>
       <el-button type='default' icon='el-icon-arrow-up' size="mini"></el-button>
       <el-button type='default' icon='el-icon-plus' size="mini" @click="addPoint"></el-button>
       <el-button type='default' icon='el-icon-minus' size="mini" @click="removePoint"></el-button>
@@ -34,7 +35,7 @@
 
 <script>
 import AgGridVue from '@/components/ag-grid'
-import colorCp from './color.js'
+import colorPicker from '@/components/vue-color-picker/picker'
 import readFile from '../mixins/readText'
 import { config } from '@/assets/config'
 
@@ -42,7 +43,8 @@ export default {
   mixins: [readFile],
   name: 'operate',
   components: {
-    'ag-grid-vue': AgGridVue
+    'ag-grid-vue': AgGridVue,
+    'color-picker': colorPicker
   },
   props: {
     inRangePoints: {
@@ -82,7 +84,6 @@ export default {
       selectedRows: [],
       display: 1,
       color: '',
-      picked: {},
       menus: [
         {
           name: '设置颜色',
@@ -105,12 +106,6 @@ export default {
           // suppressSorting: true,
           suppressMenu: true,
           pinned: true
-        },
-        {
-          headerName: '*',
-          width: 30,
-          suppressSorting: true,
-          cellRendererFramework: colorCp
         },
         {
           headerName: '描述',
@@ -145,10 +140,6 @@ export default {
       this.selectedRows = this.gridOptions.api.getSelectedRows()
       this.$emit('selectedRowsChanged', this.selectedRows)
     },
-    onRowClicked(event) {
-      console.log(event.node.data)
-      debugger
-    },
     /**
      * 添加点
      * @param 空
@@ -181,6 +172,7 @@ export default {
     },
     checkToggle(val) {
       this.$emit('popupDisplay', val)
+      this.$refs.colorPicker.openPicker()
     }
   },
   beforeMount() {
@@ -200,11 +192,6 @@ export default {
           })
         )
         return ['copy', 'copyWithHeaders', 'separator', ...customMenus]
-      },
-      getRowStyle: function(params) {
-        if (params) {
-          // return { background: 'red' }
-        }
       }
     }
     let that = this
@@ -256,8 +243,5 @@ export default {
   background-color: #ccc;
   border-radius: 4px;
   width: 432px;
-}
-.m-colorPicker .box.open {
-  z-index: 999;
 }
 </style>

@@ -4,7 +4,7 @@
       <div class="map-wrapper">
         <v-map :zoom='zoom' :center='center' :bounds='bounds' class="map" ref='map'>
           <v-tilelayer :url='url'></v-tilelayer>
-          <v-marker v-for="(item, i) in tracks" :key="i" :lat-lng='item.marker' :icon="getIcon(item)" :draggable='true' @l-dragend='endDrag($event, item.id)'>
+          <v-marker v-for="(item, i) in tracks" :key="i" :lat-lng='item.marker' :icon="getIcon(item.selected)" :draggable='true' @l-dragend='endDrag($event, item.id)'>
             <v-popup :content='item.text' :open='popupVisible'></v-popup>
           </v-marker>
           <v-polyline :latLngs='track.data' :visible='track.show'></v-polyline>
@@ -159,35 +159,12 @@ export default {
         // this.center = [parseFloat(last.latitude), parseFloat(last.longitude)]
       }
     },
-    getIcon(item) {
-      let color = item.color || '#583470'
-      let isSelected = item.selected
-      let className = isSelected
-        ? 'iconfont icon-position1 active'
-        : 'iconfont icon-position1'
-      // return L.divIcon({
-      //   className: className,
-      //   iconSize: [40, 40],
-      //   iconAnchor: [20, 38]
-      // })
-
-      const myCustomColour = color
-
-      const markerHtmlStyles = `
-        background-color: ${myCustomColour};
-        width: 1.5rem;
-        height: 1.5rem;
-        display: block;
-        position: relative;
-        border-radius: 3rem 3rem 0;
-        transform: rotate(45deg);
-        border: 1px solid #FFFFFF`
-
+    getIcon(isSelected) {
+      let style = isSelected ? 'iconfont icon-position1 active' : 'iconfont icon-position1'
       return L.divIcon({
-        // className: className,
-        iconSize: [10, 10],
-        iconAnchor: [0, 0],
-        html: `<span style="${markerHtmlStyles}" />`
+        className: style,
+        iconSize: [40, 40],
+        iconAnchor: [20, 38]
       })
     },
     selectContainedPoint(latLngBounds) {

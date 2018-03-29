@@ -160,8 +160,8 @@ export default {
       }
     },
     getIcon(item) {
-      let color = item.color || '#583470'
       let isSelected = item.selected
+      let color = '#11a'
       let className = isSelected
         ? 'iconfont icon-position1 active'
         : 'iconfont icon-position1'
@@ -171,13 +171,15 @@ export default {
       //   iconAnchor: [20, 38]
       // })
 
-      const myCustomColour = color
+      const myCustomColour = '#583470'
 
       const markerHtmlStyles = `
         background-color: ${myCustomColour};
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2rem;
+        height: 2rem;
         display: block;
+        left: -1.5rem;
+        top: -1.5rem;
         position: relative;
         border-radius: 3rem 3rem 0;
         transform: rotate(45deg);
@@ -185,8 +187,9 @@ export default {
 
       return L.divIcon({
         // className: className,
-        iconSize: [10, 10],
-        iconAnchor: [0, 0],
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
         html: `<span style="${markerHtmlStyles}" />`
       })
     },

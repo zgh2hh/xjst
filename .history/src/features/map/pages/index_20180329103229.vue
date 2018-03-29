@@ -185,8 +185,9 @@ export default {
 
       return L.divIcon({
         // className: className,
-        iconSize: [10, 10],
-        iconAnchor: [0, 0],
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
         html: `<span style="${markerHtmlStyles}" />`
       })
     },

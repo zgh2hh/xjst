@@ -211,6 +211,7 @@ export default {
     this.gridOptions.columnDefs = this.createColumnDefs()
     this.gridOptions.stopEditingWhenGridLosesFocus = true
     this.gridOptions.onCellValueChanged = function(event) {
+      // console.log('changed', event.data)
       // 发送更改的点信息给地图组件
       // TODO 编辑需要优化
       that.$emit('updated', that.rowData)

@@ -179,7 +179,7 @@ export default {
         height: 1.5rem;
         display: block;
         position: relative;
-        border-radius: 3rem 3rem 0;
+        border-radius: 2rem 2rem 0;
         transform: rotate(45deg);
         border: 1px solid #FFFFFF`
 

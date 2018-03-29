@@ -1,25 +1,34 @@
-// import Vue from 'vue'
-
-// export default Vue.extend({
-//   template: '<div :style="style"></div>',
-//   props: ['picked'],
-//   computed: {
-//     style: function() {
-//       return {
-//         'background-color': '#ccc',
-//         'width': '20px',
-//         'height': '20px'
-//       }
-//     }
-//   },
-//   data() {
-//     return {
-//       color: '#ccc'
-//     }
-//   }
-// })
-
 import Vue from 'vue'
+
+export default Vue.extend({
+  template: '<div :style="style"></div>',
+  computed: {
+    style: function() {
+      return {
+        'background-color': this.color,
+        'width': '20px',
+        'height': '20px'
+      }
+    }
+  },
+  data() {
+    return {
+      color: '#ccc'
+    }
+  },
+  methods: {
+    setColor(params) {
+      let color = params.color
+      this.color = color
+    }
+  },
+  created() {
+    this.setColor(this.params)
+    debugger
+  }
+})
+
+/* import Vue from 'vue'
 import picker from '@/components/vue-color-picker/picker'
 
 export default Vue.extend({
@@ -47,4 +56,4 @@ export default Vue.extend({
       this.color = val
     }
   }
-})
+}) */

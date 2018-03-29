@@ -175,8 +175,8 @@ export default {
 
       const markerHtmlStyles = `
         background-color: ${myCustomColour};
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 2rem;
+        height: 2rem;
         display: block;
         position: relative;
         border-radius: 3rem 3rem 0;
@@ -185,8 +185,9 @@ export default {
 
       return L.divIcon({
         // className: className,
-        iconSize: [10, 10],
-        iconAnchor: [0, 0],
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
         html: `<span style="${markerHtmlStyles}" />`
       })
     },

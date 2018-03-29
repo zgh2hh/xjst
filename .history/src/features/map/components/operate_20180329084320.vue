@@ -19,7 +19,7 @@
     </el-row>
     <!-- 列表 -->
     <el-row :gutter="0">
-      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :localeText='localeText' :enableSorting='true'>
+      <ag-grid-vue class="ag-fresh" style="height:600px;" :gridOptions="gridOptions" :rowData="rowData" rowSelection="multiple" :rowSelected="onRowSelected" :cellClicked="onCellClicked" :localeText='localeText' :enableSorting='true'>
       </ag-grid-vue>
     </el-row>
     <!-- 操作按钮 -->
@@ -34,8 +34,7 @@
 
 <script>
 import AgGridVue from '@/components/ag-grid'
-import colorRenderComponent from './colorRenderComponent'
-import colorEditorComponent from './colorEditorComponent'
+import colorCp from './color.js'
 import readFile from '../mixins/readText'
 import { config } from '@/assets/config'
 
@@ -109,12 +108,9 @@ export default {
         },
         {
           headerName: '*',
-          field: 'color',
           width: 30,
           suppressSorting: true,
-          cellRendererFramework: colorRenderComponent,
-          cellEditorFramework: colorEditorComponent,
-          editable: true
+          cellRendererFramework: colorCp
         },
         {
           headerName: '描述',
@@ -148,6 +144,10 @@ export default {
     onRowSelected(event) {
       this.selectedRows = this.gridOptions.api.getSelectedRows()
       this.$emit('selectedRowsChanged', this.selectedRows)
+    },
+    onCellClicked(event) {
+      console.log(event.node.data)
+      debugger
     },
     /**
      * 添加点
@@ -211,6 +211,7 @@ export default {
     this.gridOptions.columnDefs = this.createColumnDefs()
     this.gridOptions.stopEditingWhenGridLosesFocus = true
     this.gridOptions.onCellValueChanged = function(event) {
+      // console.log('changed', event.data)
       // 发送更改的点信息给地图组件
       // TODO 编辑需要优化
       that.$emit('updated', that.rowData)

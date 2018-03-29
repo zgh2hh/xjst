@@ -173,12 +173,14 @@ export default {
 
       const myCustomColour = color
 
-      const markerHtmlStyles = `color: ${myCustomColour};`
+      const markerHtmlStyles = `
+        color: ${myCustomColour};
+        `
 
       return L.divIcon({
         // className: className,
-        iconSize: [28, 28],
-        iconAnchor: [14, 28],
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
         html: `<span style="${markerHtmlStyles}" class="${className}" />`
       })
     },
@@ -324,10 +326,5 @@ export default {
       font-weight: bold;
     }
   } */
-}
-
-.leaflet-marker-icon .leaflet-div-icon{
-  background: transparent;
-  border:none;
 }
 </style>

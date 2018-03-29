@@ -173,13 +173,21 @@ export default {
 
       const myCustomColour = color
 
-      const markerHtmlStyles = `color: ${myCustomColour};`
+      const markerHtmlStyles = `
+        background-color: ${myCustomColour};
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+        position: relative;
+        border-radius: 3rem 3rem 0;
+        transform: rotate(45deg);
+        border: 1px solid #FFFFFF`
 
       return L.divIcon({
-        // className: className,
-        iconSize: [28, 28],
-        iconAnchor: [14, 28],
-        html: `<span style="${markerHtmlStyles}" class="${className}" />`
+        className: className,
+        iconSize: [0, 0],
+        iconAnchor: [0, 0],
+        html: `<span style="${markerHtmlStyles}" />`
       })
     },
     selectContainedPoint(latLngBounds) {
@@ -324,10 +332,5 @@ export default {
       font-weight: bold;
     }
   } */
-}
-
-.leaflet-marker-icon .leaflet-div-icon{
-  background: transparent;
-  border:none;
 }
 </style>

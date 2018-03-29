@@ -176,9 +176,9 @@ export default {
       const markerHtmlStyles = `color: ${myCustomColour};`
 
       return L.divIcon({
-        // className: className,
-        iconSize: [28, 28],
-        iconAnchor: [14, 28],
+        className: className,
+        iconSize: [20, 20],
+        iconAnchor: [20, 20],
         html: `<span style="${markerHtmlStyles}" class="${className}" />`
       })
     },

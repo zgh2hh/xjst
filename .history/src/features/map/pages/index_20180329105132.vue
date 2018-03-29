@@ -177,8 +177,8 @@ export default {
 
       return L.divIcon({
         // className: className,
-        iconSize: [28, 28],
-        iconAnchor: [14, 28],
+        iconSize: [20, 20],
+        iconAnchor: [20, 20],
         html: `<span style="${markerHtmlStyles}" class="${className}" />`
       })
     },
@@ -324,10 +324,5 @@ export default {
       font-weight: bold;
     }
   } */
-}
-
-.leaflet-marker-icon .leaflet-div-icon{
-  background: transparent;
-  border:none;
 }
 </style>

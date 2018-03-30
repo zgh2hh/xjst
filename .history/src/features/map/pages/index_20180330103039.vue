@@ -104,7 +104,7 @@ export default {
             },
             title: item.time,
             selected: false,
-            color: item.color || '#00BB9C'
+            color: item.color || '#000'
           })
         })
         this.monitors = result
@@ -277,6 +277,9 @@ export default {
 
       .map {
         z-index: 0;
+        .icon-position1 {
+          color: springgreen;
+        }
       }
     }
 

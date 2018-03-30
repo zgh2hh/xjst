@@ -256,14 +256,18 @@ export default {
 
       .map {
         z-index: 0;
-        .position1 {
-          color: springgreen;
+        .position {
+          background-image: url('../../../assets/img/position.png');
+          background-size: 100% 100%;
+          &:hover {
+            background-image: url('../../../assets/img/position-active.png');
+          }
         }
 
-        // .position.active {
-        //   background-image: url('../../../assets/img/position-active.png');
-        //   background-size: 100% 100%;
-        // }
+        .position.active {
+          background-image: url('../../../assets/img/position-active.png');
+          background-size: 100% 100%;
+        }
       }
     }
   }

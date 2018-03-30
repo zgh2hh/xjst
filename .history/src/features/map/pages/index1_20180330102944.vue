@@ -234,7 +234,7 @@ export default {
     },
     endDrag(evt) {
       console.log('end_drag')
-      console.log(evt)
+      console.log(evt) 
     },
     onRowSelected(event) {
       // console.log('onRowSelected: ' + event.node.data.time)

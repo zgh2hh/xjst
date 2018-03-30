@@ -104,7 +104,7 @@ export default {
             },
             title: item.time,
             selected: false,
-            color: item.color || '#00BB9C'
+            color: item.color || '#000'
           })
         })
         this.monitors = result
@@ -161,6 +161,7 @@ export default {
     },
     getIcon(item) {
       let color = item.color || '#00BB9C'
+      debugger
       let isSelected = item.selected
       let className = isSelected
         ? 'iconfont icon-position1 active'

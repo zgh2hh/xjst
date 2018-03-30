@@ -110,7 +110,7 @@ export default {
         {
           headerName: '颜色',
           field: 'color',
-          width: 50,
+          width: 40,
           suppressSorting: true,
           cellRendererFramework: colorRenderComponent,
           cellEditorFramework: colorEditorComponent,
